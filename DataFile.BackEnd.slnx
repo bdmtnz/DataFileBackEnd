@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DataFile.BackEnd.Api/DataFile.BackEnd.Api.csproj" />
+  <Project Path="DataFile.BackEnd.Application/DataFile.BackEnd.Application.csproj" />
+  <Project Path="DataFile.BackEnd.Contracts/DataFile.BackEnd.Contracts.csproj" Id="e508614d-1595-422d-a6c0-afb70de9685f" />
+  <Project Path="DataFile.BackEnd.Domain/DataFile.BackEnd.Domain.csproj" />
+  <Project Path="DataFile.BackEnd.Infrastructure/DataFile.BackEnd.Infrastructure.csproj" />
+</Solution>
