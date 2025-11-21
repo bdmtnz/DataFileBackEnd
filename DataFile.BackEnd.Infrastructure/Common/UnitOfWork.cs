@@ -3,39 +3,33 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DataFile.BackEnd.Infrastructure.Common
 {
-    public class UnitOfWork(MemoryDBContext context) : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private IDbContextTransaction? _transaction;
+        private readonly MemoryDBContext _context;
+
+        public UnitOfWork(MemoryDBContext context)
+        {
+            _context = context;
+        }
 
         public async Task SaveChangesAsync()
         {
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
-        public async Task BeginTransaction()
-        {
-            _transaction = await context.Database.BeginTransactionAsync();
-        }
+        public async Task BeginTransaction() { }
 
         public async Task CommitAsync()
         {
-            if (_transaction is not null)
-            {
-                await _transaction.CommitAsync();
-            }
-
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
-        public async Task RollbackAsync()
-        {
-            await context.Database.RollbackTransactionAsync();
-        }
+        public async Task RollbackAsync() { }
 
         public IGenericRepository<TD> GenericRepository<TD>()
             where TD : class
         {
-            return new GenericRepository<TD>(context);
+            return new GenericRepository<TD>(_context);
         }
     }
 }

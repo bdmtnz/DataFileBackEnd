@@ -10,7 +10,7 @@ namespace DataFile.BackEnd.Contracts.Products
             config.NewConfig<Product, ProductResponse>()
                 .Map(
                     dest => dest.Id,
-                    src => src.Id.ToString());
+                    src => src.Id.Value.ToString());
         }
     }
 }

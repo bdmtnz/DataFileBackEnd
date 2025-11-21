@@ -4,6 +4,7 @@ namespace DataFile.BackEnd.Domain.Contracts.Infrastructure
 {
     public interface IGenericRepository<T> where T : class
     {
+        Task<IEnumerable<T>> GetAll(string includes = "");
         Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, string includes = "");
         Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate, string includes = "");
         Task<int> Count();

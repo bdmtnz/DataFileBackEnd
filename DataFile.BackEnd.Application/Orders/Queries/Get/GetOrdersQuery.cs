@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cortex.Mediator.Queries;
+using DataFile.BackEnd.Contracts.Orders;
+using ErrorOr;
 
 namespace DataFile.BackEnd.Application.Orders.Queries.Get
 {
-    internal class GetOrdersQuery
-    {
-    }
+    public record GetOrdersQuery : IQuery<ErrorOr<List<OrderResponse>>>;
 }

@@ -10,6 +10,22 @@ namespace DataFile.BackEnd.Infrastructure.Common
     {
         private readonly DbSet<T> _dbSet = context.Set<T>();
 
+        public async Task<IEnumerable<T>> GetAll(string includes = "")
+        {
+            IQueryable<T>? query = _dbSet.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(includes))
+            {
+                string[]? entities = includes.Split(';');
+                foreach (string? entity in entities)
+                {
+                    query = query.Include(entity);
+                }
+            }
+
+            return (await query.AsNoTracking().ToListAsync()).ToImmutableList();
+        }
+
         public async Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate, string includes = "")
         {
             var query = _dbSet.AsQueryable<T>();

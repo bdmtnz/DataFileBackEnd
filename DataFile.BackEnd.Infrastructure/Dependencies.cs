@@ -27,7 +27,7 @@ namespace DataFile.BackEnd.Infrastructure
                 opts.UseInMemoryDatabase(memoryConnectionString);
             });
 
-            //services.AddScoped<MemoryDBContext>();
+            services.AddScoped<MemoryDBContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

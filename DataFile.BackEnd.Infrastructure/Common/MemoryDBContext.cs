@@ -4,8 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataFile.BackEnd.Infrastructure.Common
 {
-    public class MemoryDBContext(DbContextOptions<MemoryDBContext> opts) : DbContext(opts)
+    public class MemoryDBContext : DbContext
     {
+        public MemoryDBContext() { }
+        public MemoryDBContext(DbContextOptions<MemoryDBContext> options) : base(options)
+        {
+            var wasCreated = Database.EnsureCreated();
+        }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await base.SaveChangesAsync(cancellationToken);

@@ -4,7 +4,5 @@ using ErrorOr;
 
 namespace DataFile.BackEnd.Application.Products.Get
 {
-    public record GetProductsQuery : IQuery<ErrorOr<List<ProductResponse>>>
-    {
-    }
+    public record GetProductsQuery(string? Keyword) : IQuery<ErrorOr<List<ProductResponse>>>;
 }

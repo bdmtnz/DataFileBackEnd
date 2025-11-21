@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cortex.Mediator.Commands;
+using DataFile.BackEnd.Domain.Orders.ValueObjects;
+using ErrorOr;
 
 namespace DataFile.BackEnd.Application.Orders.Commands.Create
 {
-    internal class CreateOrderCommand
-    {
-    }
+    public record CreateOrderCommand(
+        string ProductId,
+        string UserId,
+        int Quantity
+    ) : ICommand<ErrorOr<OrderId>>;
 }
